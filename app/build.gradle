@@ -1,17 +1,40 @@
 apply plugin: 'com.android.application'
+apply plugin: 'androidx.navigation.safeargs'
+
+static def getProperty(String filename, String property) {
+    Properties properties = new Properties()
+    properties.load(new FileInputStream(filename))
+    return properties.getProperty(property)
+}
+
+static def quoted(String value) {
+    return"\"${value}\""
+}
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "edu.cnm.deepdive.dungeonrunclient"
-        minSdkVersion 24
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        def connection_properties = "$projectDir/../../../services/dungeonrun.properties"
+
+        buildConfigField "String", "CLIENT_ID", quoted(
+                getProperty(connection_properties, "client_id")
+        )
+        buildConfigField "String", "BASE_URL", quoted(
+                getProperty(connection_properties, "base_url")
+        )
+        buildConfigField "String", "CONTENT_FORMAT", quoted(
+                getProperty(connection_properties, "content_format")
+        )
     }
 
     buildTypes {
@@ -20,17 +43,51 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    //noinspection GroovyAssignabilityCheck
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.google.android.material:material:1.3.0'
+
+    implementation 'androidx.fragment:fragment:1.3.1'
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation "androidx.navigation:navigation-fragment:$navigationVersion"
+    implementation "androidx.navigation:navigation-ui:$navigationVersion"
 
     //Google Sign-in dependency
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
-    implementation 'androidx.wear:wear:1.0.0'
+
+    //Gson (Google JSON) dependency
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //ReactiveX libraries
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    //Retrofit (REST client) with ReactiveX & Gson integration
+    def retrofit_version = '2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
+    // OkHttp logging dependency
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    compileOnly 'com.google.android.wearable:wearable:2.5.0'
 
 }
