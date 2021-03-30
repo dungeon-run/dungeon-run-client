@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   @Override
-  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+  public boolean onOptionsItemSelected(MenuItem item) {
     boolean handled = true;
     switch (item.getItemId()) {
       case R.id.sign_out:
