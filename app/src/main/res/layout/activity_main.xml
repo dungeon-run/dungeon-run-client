@@ -21,6 +21,4 @@
 
   </com.google.android.material.appbar.AppBarLayout>
 
-  <include layout="@layout/activity_login"/>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
