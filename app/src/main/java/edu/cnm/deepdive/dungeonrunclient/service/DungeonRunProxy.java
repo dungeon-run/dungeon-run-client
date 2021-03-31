@@ -18,7 +18,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface DungeonRunProxy {
-
+  
   @GET("users/me")
   Single<User> getProfile(@Header("Authorization") String bearerToken);
 
