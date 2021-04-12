@@ -3,6 +3,7 @@
 
   <item
     android:id="@+id/play_navigation"
+    android:icon="@drawable/ic_labyrinth"
     android:title="@string/title_play"/>
 
   <item

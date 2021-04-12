@@ -7,6 +7,7 @@
     android:key="maze_difficulty_key"
     android:title="@string/maze_difficulty_title"
     android:summary="@string/difficulty_summary"
+    android:icon="@drawable/ic_labyrinth_colorful"
     app:min="1"
     android:max="20"
     app:showSeekBarValue="true"/>
