@@ -2,5 +2,8 @@
   <string name="app_name">Dungeon Run Client</string>
 
   <string name="title_activity_login">LoginActivity</string>
+  <string name="title_play">Play</string>
+  <string name="title_leaderboard">Leaderboard</string>
+  <string name="title_settings">Settings</string>
 
 </resources>

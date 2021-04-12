@@ -51,6 +51,5 @@ public interface DungeonRunProxy {
       INSTANCE = retrofit.create(DungeonRunProxy.class);
     }
 
-
   }
 }

@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.ui.AppBarConfiguration;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import edu.cnm.deepdive.dungeonrunclient.R;
 import edu.cnm.deepdive.dungeonrunclient.service.GoogleSignInService;
 import edu.cnm.deepdive.dungeonrunclient.viewmodel.MainViewModel;
@@ -25,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
     setSupportActionBar(toolbar);
     setUpViewModel();
   }
+//  setContentView(R.layout.activity_main);
+//  BottomNavigationView navView = findViewById(R.id.nav_view);
+//  appBarConfiguration = new AppBarConfiguration.Builder(
+//  R.id.play_navigation, R.id.settings_navigation, R.id.leaderboard_navigation)
+//      .build();
 
   private void setUpViewModel() {
     viewModel = new ViewModelProvider(this).get(MainViewModel.class);
