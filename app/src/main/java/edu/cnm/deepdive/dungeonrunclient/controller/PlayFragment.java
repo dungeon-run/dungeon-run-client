@@ -24,7 +24,6 @@ public class PlayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_play, container, false);
         binding = FragmentPlayBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <SeekBarPreference
+    android:key="maze_difficulty_key"
+    android:title="@string/maze_difficulty_title"
+    android:summary="@string/difficulty_summary"
+    app:min="1"
+    android:max="20"
+    app:showSeekBarValue="true"/>
+
+</PreferenceScreen>
