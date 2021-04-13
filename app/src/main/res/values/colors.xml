@@ -3,6 +3,7 @@
   <color name="colorPrimary">#6A1B9A</color>
   <color name="colorPrimaryDark">#38006B</color>
   <color name="colorAccent">#84FFFF</color>
+  <color name="colorPrimarySurface">#FFF1FF</color>
 
   <color name="colorBackgroundLauncher">#000000</color>
 

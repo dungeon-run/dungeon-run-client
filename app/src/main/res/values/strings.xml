@@ -11,5 +11,8 @@
   <string name="sign_out">Sign Out</string>
   <string name="maze_difficulty_title">Maze Difficulty</string>
   <string name="difficulty_summary">Maze difficulty affects time given and number of corridors to navigate.</string>
+  <string name="user_name_header">User Name</string>
+  <string name="difficulty_header">Difficulty</string>
+  <string name="time_taken_header">Time Taken</string>
 
 </resources>
