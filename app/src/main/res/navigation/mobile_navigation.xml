@@ -33,6 +33,10 @@
     android:id="@+id/navigation_game"
     android:label="DungeonRun: Maze"
     android:name="edu.cnm.deepdive.dungeonrunclient.controller.GameFragment"
-    tools:layout="@layout/fragment_game"/>
+    tools:layout="@layout/fragment_game">
+    <argument
+      android:name="maze_id"
+      app:argType="long"/>
+  </fragment>
 
 </navigation>

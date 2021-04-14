@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.dungeonrunclient.controller;
 
 import android.os.Bundle;
+import android.view.View.OnClickListener;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,9 +24,8 @@ public class PlayFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
         binding = FragmentPlayBinding.inflate(inflater, container, false);
-//        binding.startGameButton.setOnClickListener((v) -> {
-//            Navigation.findNavController(binding.getRoot()).navigate(GameFragment);
-//        });
+        binding.startGameButton.setOnClickListener(
+            (v) -> Navigation.findNavController(v).navigate(R.id.action_navigation_play_to_navigation_game));
         return binding.getRoot();
     }
 }

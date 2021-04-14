@@ -9,6 +9,8 @@ import edu.cnm.deepdive.dungeonrunclient.R;
 
 public class GameFragment extends Fragment {
 
+
+
   public static GameFragment newInstance(String param1, String param2) {
     GameFragment fragment = new GameFragment();
     Bundle args = new Bundle();
@@ -25,7 +27,6 @@ public class GameFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
     return inflater.inflate(R.layout.fragment_game, container, false);
   }
 }
