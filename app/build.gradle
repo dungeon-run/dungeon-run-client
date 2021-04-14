@@ -56,7 +56,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    //Basic Android Jetpack suppoert
+    //Basic Android Jetpack support
     implementation 'androidx.core:core:1.3.2'
     implementation 'androidx.media:media:1.3.0'
     implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'

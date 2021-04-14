@@ -8,9 +8,14 @@
 
   <fragment
     android:id="@+id/navigation_play"
-    android:label="Dungeon Run: Play"
+    android:label="Dungeon Run: Home"
     android:name="edu.cnm.deepdive.dungeonrunclient.controller.PlayFragment"
-    tools:layout="@layout/fragment_play"/>
+    tools:layout="@layout/fragment_play">
+  <action
+    android:id="@+id/action_navigation_play_to_navigation_game"
+    app:destination="@id/navigation_game"
+    app:popUpTo="@id/navigation_play"/>
+  </fragment>
 
   <fragment
     android:id="@+id/navigation_settings"
@@ -23,5 +28,11 @@
     android:label="LeaderBoard"
     android:name="edu.cnm.deepdive.dungeonrunclient.controller.LeaderboardFragment"
     tools:layout="@layout/fragment_leaderboard"/>
+
+  <fragment
+    android:id="@+id/navigation_game"
+    android:label="DungeonRun: Maze"
+    android:name="edu.cnm.deepdive.dungeonrunclient.controller.GameFragment"
+    tools:layout="@layout/fragment_game"/>
 
 </navigation>
