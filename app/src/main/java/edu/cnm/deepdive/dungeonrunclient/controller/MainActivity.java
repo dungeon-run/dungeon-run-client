@@ -30,14 +30,11 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     BottomNavigationView navView = findViewById(R.id.nav_view);
     appBarConfiguration = new AppBarConfiguration.Builder(
-    R.id.play_navigation, R.id.settings_navigation, R.id.leaderboard_navigation)
+    R.id.navigation_play, R.id.navigation_leaderboard)
       .build();
     navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     NavigationUI.setupWithNavController(navView, navController);
-//    Toolbar toolbar = findViewById(R.id.toolbar);
-//    setSupportActionBar(toolbar);
-//    setUpViewModel();
   }
 
   @Override
@@ -78,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
     return handled;
   }
 
-//  @Override
-//  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//    super.onActivityResult(requestCode, resultCode, data);
-//  }
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+  }
 
   private void logout() {
     GoogleSignInService.getInstance().signOut()

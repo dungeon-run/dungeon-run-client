@@ -2,16 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
   <item
-    android:id="@+id/play_navigation"
+    android:id="@+id/navigation_play"
     android:icon="@drawable/ic_labyrinth"
     android:title="@string/title_play"/>
 
   <item
-    android:id="@+id/leaderboard_navigation"
+    android:id="@+id/navigation_leaderboard"
+    android:icon="@drawable/ic_podium"
     android:title="@string/title_leaderboard"/>
-
-  <item
-    android:id="@+id/settings_navigation"
-    android:title="@string/title_settings"/>
-
 </menu>
