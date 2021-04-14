@@ -6,10 +6,10 @@
   android:layout_height="match_parent"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:padding="4dp"
-  tools:context=".controller.PlayFragment">
+  tools:context=".controller.HomeFragment">
 
     <TextView
-      android:id="@+id/play_screen"
+      android:id="@+id/home_screen"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:text="Home and Game screen"

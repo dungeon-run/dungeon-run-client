@@ -7,7 +7,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
     BottomNavigationView navView = findViewById(R.id.nav_view);
     appBarConfiguration = new AppBarConfiguration.Builder(
-    R.id.navigation_play, R.id.navigation_leaderboard)
+    R.id.navigation_home, R.id.navigation_leaderboard)
       .build();
     navController = Navigation.findNavController(this, R.id.nav_host_fragment);
     NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
