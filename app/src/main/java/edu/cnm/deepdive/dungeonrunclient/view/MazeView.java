@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Paint.Style;
 import android.util.AttributeSet;
 import android.view.View;
 import androidx.annotation.Nullable;
@@ -21,7 +22,8 @@ public class MazeView extends View {
     setWillNotDraw(false);
     paint = new Paint();
     paint.setColor(Color.BLACK); // FIXME Take it from a resource. Make it more pretty
-    paint.setStrokeWidth(2); //FIXME Make dependat on puzzle diffucly and view size
+//    paint.setStrokeWidth(2); //FIXME Make dependant on puzzle diffucly and view size
+    paint.setStyle(Style.STROKE);
   }
 
   public MazeView(Context context) {
@@ -43,6 +45,7 @@ public class MazeView extends View {
 
   @Override
   protected void onDraw(Canvas canvas) {
+    canvas.drawRect(0, 0, getWidth(), getHeight(), paint);
     Cell[][] cells = maze.getCells();
     float cellWidth = (float) getWidth() / cells[0].length;
     float cellHeight = (float) getHeight() / cells.length;

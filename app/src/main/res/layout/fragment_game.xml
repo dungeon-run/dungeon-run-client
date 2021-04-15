@@ -5,7 +5,8 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  tools:context=".controller.GameFragment">
+  tools:context=".controller.GameFragment"
+  android:padding="8dp">
 
   <edu.cnm.deepdive.dungeonrunclient.view.MazeView
     android:id="@+id/maze"
