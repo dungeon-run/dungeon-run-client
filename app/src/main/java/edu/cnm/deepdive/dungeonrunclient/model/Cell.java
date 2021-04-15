@@ -1,7 +1,12 @@
 package edu.cnm.deepdive.dungeonrunclient.model;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Cell {
 
@@ -11,18 +16,20 @@ public class Cell {
   private final int column;
   private final int mazeSize;
   private final Maze maze;
+  private final Random rng;
 
   private boolean visited;
 
-  public Cell(int row, int column, Maze maze) {
-    this(EnumSet.allOf(Direction.class), row, column, maze);
+  public Cell(int row, int column, Maze maze, Random rng) {
+    this(EnumSet.allOf(Direction.class), row, column, maze, rng);
   }
 
-  public Cell(EnumSet<Direction> walls, int row, int column, Maze maze) {
+  public Cell(EnumSet<Direction> walls, int row, int column, Maze maze, Random rng) {
     this.row = row;
     this.column = column;
     this.mazeSize = maze.getSize();
     this.maze = maze;
+    this.rng = rng;
     this.walls.addAll(walls);
   }
 
@@ -45,9 +52,38 @@ public class Cell {
   public void setVisited(boolean visited) {
     this.visited = visited;
   }
-
-  public List<Cell> neighbors(boolean unvisitedOnly) {
-   return null;
+//contains the maze
+  public Map<Direction, Cell> getNeighbors(boolean unvisitedOnly) {
+   return Stream
+       .of(Direction.values())
+       .filter((dir) ->
+           row + dir.getRowOffset() >= 0
+           && row + dir.getRowOffset() < mazeSize
+           && column + dir.getColumnOffset() >= 0
+           && column + dir.getColumnOffset() < mazeSize
+       )
+       .collect(Collectors.toMap((dir) -> dir,
+           (dir) -> maze.getCells()[row + dir.rowOffset][column + dir.columnOffset]))
+       .entrySet()
+       .stream()
+       .filter((entry) -> !unvisitedOnly || !entry.getValue().visited)
+       .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+  }
+  //sets the random paths in the maze
+  public void addToMaze() {
+    visited = true;
+    for (Map<Direction, Cell> neighbors = getNeighbors(true);
+        !neighbors.isEmpty();
+        neighbors = getNeighbors(true)) {
+      List<Map.Entry<Direction, Cell>> neighborEntries = new ArrayList<>(neighbors.entrySet());
+      Map.Entry<Direction, Cell> selectedNeighbor
+          = neighborEntries.get(rng.nextInt(neighborEntries.size()));
+      Direction dir = selectedNeighbor.getKey();
+      walls.remove(dir);
+      Cell cell = selectedNeighbor.getValue();
+      cell.walls.remove(dir.opposite());
+      cell.addToMaze();
+    }
   }
 
   public enum Direction {
