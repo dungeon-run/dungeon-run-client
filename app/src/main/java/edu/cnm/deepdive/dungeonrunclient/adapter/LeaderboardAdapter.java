@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.dungeonrunclient.Adapter;
+package edu.cnm.deepdive.dungeonrunclient.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,27 +6,26 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.cnm.deepdive.dungeonrunclient.databinding.ItemValueCountBinding;
-import edu.cnm.deepdive.dungeonrunclient.model.Level;
+import edu.cnm.deepdive.dungeonrunclient.model.Attempt;
 import edu.cnm.deepdive.dungeonrunclient.model.User;
-import java.util.Date;
 import java.util.List;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<Holder> {
 
   private final Context context;
-  private final List<Level> levels;
+  private final List<Attempt> attempts;
   private final List<User> users;
   private final LayoutInflater inflater;
 
-  public LeaderboardAdapter(Context context, List<Level> levels, List<User> users) {
+  public LeaderboardAdapter(Context context, List<Attempt> attempts, List<User> users) {
     this.context = context;
-    this.levels = levels;
+    this.attempts = attempts;
     this.users = users;
     inflater = LayoutInflater.from(context);
   }
 
-  public List<Level> getLevels() {
-    return levels;
+  public List<Attempt> getAttempts() {
+    return attempts;
   }
 
   @NonNull
@@ -38,19 +37,19 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<Holder> {
 
   @Override
   public void onBindViewHolder(@NonNull Holder holder, int position) {
-    holder.Bind(levels.get(position), users.get(position));
+    holder.Bind(attempts.get(position), users.get(position));
   }
 
   @Override
   public int getItemCount() {
-    return levels.size();
+    return attempts.size();
   }
 }
 
  class Holder extends RecyclerView.ViewHolder {
 
   private final ItemValueCountBinding valueBinding;
-  private Level level;
+  private Attempt attempt;
   private User user;
 
    public Holder(@NonNull ItemValueCountBinding binding) {
@@ -59,13 +58,13 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<Holder> {
      binding.getRoot();
    }
 
-   void Bind(Level level, User user) {
+   void Bind(Attempt attempt, User user) {
      String userLeaderboard = user.getDisplayName();
-     int difficulty = level.getDifficulty();
-     Date endTime = level.getEndTime();
-     valueBinding.userName.setText(userLeaderboard.toString());
+     int difficulty = attempt.getDifficulty();
+     long timeElapsed = attempt.getTimeElapsed();
+     valueBinding.userName.setText(userLeaderboard);
      valueBinding.difficulty.setText(difficulty);
-     valueBinding.timeTaken.setText((CharSequence) endTime);
+     valueBinding.timeElapsed.setText((int) timeElapsed);
      valueBinding.getRoot();
    }
  }

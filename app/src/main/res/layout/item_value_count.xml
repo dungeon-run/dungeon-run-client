@@ -26,7 +26,7 @@
     tools:text="15"/>
 
   <TextView
-    android:id="@+id/time_taken"
+    android:id="@+id/time_elapsed"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/half_static_spacing"

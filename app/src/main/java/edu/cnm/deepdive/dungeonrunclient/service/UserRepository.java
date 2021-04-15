@@ -23,13 +23,10 @@ public class UserRepository {
   }
 
   public Single<User> getUserProfile() {
-    return signInService.refresh()
+    return signInService.refreshBearerToken()
         .observeOn(Schedulers.io())
-        .flatMap((account) -> webService.getProfile(getBearerToken(account.getIdToken()))
+        .flatMap((token) -> webService.getProfile(token)
             .subscribeOn(Schedulers.io()));
   }
 
-  private String getBearerToken(String idToken) {
-    return String.format("Bearer %s", idToken);
-  }
 }

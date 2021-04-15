@@ -4,10 +4,16 @@ import com.google.gson.annotations.Expose;
 import java.util.Date;
 import java.util.UUID;
 
-public class Level {
+public class Attempt {
+
+  @Expose
+  private User user;
 
   @Expose
   private UUID id;
+
+  @Expose
+  private Date startTime;
 
   @Expose
   private Date endTime;
@@ -21,12 +27,31 @@ public class Level {
   @Expose
   private boolean completed;
 
+  @Expose
+  private long timeElapsed;
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
   public UUID getId() {
     return id;
   }
 
   public void setId(UUID id) {
     this.id = id;
+  }
+
+  public Date getStartTime() {
+    return startTime;
+  }
+
+  public void setStartTime(Date startTime) {
+    this.startTime = startTime;
   }
 
   public Date getEndTime() {
@@ -59,5 +84,13 @@ public class Level {
 
   public void setCompleted(boolean completed) {
     this.completed = completed;
+  }
+
+  public long getTimeElapsed() {
+    return timeElapsed;
+  }
+
+  public void setTimeElapsed(long timeElapsed) {
+    this.timeElapsed = timeElapsed;
   }
 }
