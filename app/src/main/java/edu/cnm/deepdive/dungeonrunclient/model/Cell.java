@@ -1,9 +1,11 @@
 package edu.cnm.deepdive.dungeonrunclient.model;
 
+import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,6 +19,7 @@ public class Cell {
   private final int mazeSize;
   private final Maze maze;
   private final Random rng;
+  private final int hash;
 
   private boolean visited;
 
@@ -31,6 +34,7 @@ public class Cell {
     this.maze = maze;
     this.rng = rng;
     this.walls.addAll(walls);
+    hash = Objects.hash(row, column);
   }
 
   public EnumSet<Direction> getWalls() {
@@ -52,6 +56,7 @@ public class Cell {
   public void setVisited(boolean visited) {
     this.visited = visited;
   }
+
 //contains the maze
   public Map<Direction, Cell> getNeighbors(boolean unvisitedOnly) {
    return Stream
@@ -69,6 +74,15 @@ public class Cell {
        .filter((entry) -> !unvisitedOnly || !entry.getValue().visited)
        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
   }
+
+  public List<Cell> getConnectedNeighbors() {
+    return Stream
+        .of(Direction.values())
+        .filter((dir) -> !walls.contains(dir))
+        .map((dir) -> maze.getCells()[row + dir.getRowOffset()][column + dir.getColumnOffset()])
+        .collect(Collectors.toList());
+  }
+
   //sets the random paths in the maze
   public void addToMaze() {
     visited = true;
@@ -114,4 +128,23 @@ public class Cell {
     }
   }
 
+  @Override
+  public int hashCode() {
+    return hash;
+  }
+
+  @Override
+  public boolean equals(@Nullable Object obj) {
+    boolean eq;
+
+    if (obj == this) {
+      eq = true;
+    } else if (obj instanceof Cell) {
+      Cell other = (Cell) obj;
+      eq = (row == other.row) && (column == other.column);
+    } else {
+      eq = false;
+    }
+    return eq;
+  }
 }
