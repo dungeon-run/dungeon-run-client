@@ -42,7 +42,7 @@ private FragmentGameBinding binding;
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     //TODO Attach to ViewModel
-    Maze maze = new GameRepository(getContext()).createMaze(5); //FIXME This should go in the ViewModel
+    Maze maze = new GameRepository(getContext()).createMaze(3); //FIXME This should go in the ViewModel
     binding.maze.setMaze(maze);
     binding.maze.invalidate();
   }

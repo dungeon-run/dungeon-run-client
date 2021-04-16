@@ -11,8 +11,8 @@ public class Maze {
 
   private final Cell[][] cells;
   private final Random rng;
-  private Cell start;
-  private Cell finish;
+  private final Cell start;
+  private final Cell finish;
 
   public Maze(int size, Random rng) {
     cells = new Cell[size][size];
@@ -56,6 +56,7 @@ public class Maze {
             .stream()
             .findAny()
             .orElseThrow(IllegalStateException::new);
+        break;
       } else {
         flooded.addAll(boundary);
         boundary.clear();
@@ -63,5 +64,13 @@ public class Maze {
       }
     }
     return farthestCell;
+  }
+
+  public Cell getStart() {
+    return start;
+  }
+
+  public Cell getFinish() {
+    return finish;
   }
 }
