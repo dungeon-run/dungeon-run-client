@@ -58,4 +58,5 @@ public class AttemptRepository {
         .observeOn(Schedulers.io())
         .flatMap((token) -> webService.getLeaderboard(token, difficulty));
   }
+
 }
