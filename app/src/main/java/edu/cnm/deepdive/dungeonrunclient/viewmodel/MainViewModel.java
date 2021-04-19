@@ -9,14 +9,20 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import edu.cnm.deepdive.dungeonrunclient.service.UserRepository;
 import io.reactivex.disposables.CompositeDisposable;
 
-public class MainViewModel  extends AndroidViewModel implements LifecycleObserver {
+/**
+ * The viewmodel to set up the main view of the UI for the application when launched.
+ */
+public class MainViewModel extends AndroidViewModel implements LifecycleObserver {
 
   private final UserRepository userRepository;
   private final MutableLiveData<GoogleSignInAccount> account;
   private final MutableLiveData<Throwable> throwable;
   private final CompositeDisposable pending;
 
-
+  /**
+   * Holds the instances of the fields to be called upon when needed.
+   * @param application An instance of application created from Application.class.
+   */
   public MainViewModel(
       @NonNull Application application) {
     super (application);
@@ -26,6 +32,10 @@ public class MainViewModel  extends AndroidViewModel implements LifecycleObserve
     pending = new CompositeDisposable();
   }
 
+  /**
+   * Gets the throwable from when needed.
+   * @return
+   */
   public MutableLiveData<Throwable> getThrowable() {
     return throwable;
   }

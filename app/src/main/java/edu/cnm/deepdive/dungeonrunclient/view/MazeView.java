@@ -13,6 +13,9 @@ import edu.cnm.deepdive.dungeonrunclient.model.Cell.Direction;
 import edu.cnm.deepdive.dungeonrunclient.model.Maze;
 import java.util.EnumSet;
 
+/**
+ * MazeView creates the maze to display in the UI.
+ */
 public class MazeView extends View {
 
   private Maze maze;
@@ -26,18 +29,40 @@ public class MazeView extends View {
     paint.setStyle(Style.STROKE);
   }
 
+  /**
+   * Sets the context for this MazeView.java.
+   * @param context Creates an instance of the MazeView class for context.
+   */
   public MazeView(Context context) {
     super(context);
   }
 
+  /**
+   * For setting up the context and getting the attributes for use in the display generation.
+   * @param context Instance of context for use in the method.
+   * @param attrs Instance of AttributeSet for use in the method.
+   */
   public MazeView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
   }
 
+  /**
+   * For setting up the display of the maze generation.
+   * @param context Instance of context for use in the method.
+   * @param attrs Instance of AttributeSet for use in the method.
+   * @param defStyleAttr Instance of the style for use in the maze display.
+   */
   public MazeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
 
+  /**
+   * To set up the mazeView when called up.
+   * @param context Instance of context for use in the method.
+   * @param attrs Instance of AttributeSet for use in the method.
+   * @param defStyleAttr Instance of the style for use in the maze display.
+   * @param defStyleRes Instance of the defStyleRes to create the look of the maze.
+   */
   public MazeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr,
       int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
@@ -90,6 +115,10 @@ public class MazeView extends View {
     }
   }
 
+  /**
+   * Sets the maze when called upon in other classes.
+   * @param maze
+   */
   public void setMaze(Maze maze) {
     this.maze = maze;
   }

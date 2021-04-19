@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+// TODO Discard unused class at some point.
 public class SettingsViewModel extends ViewModel {
 
   private MutableLiveData<String> mText;
