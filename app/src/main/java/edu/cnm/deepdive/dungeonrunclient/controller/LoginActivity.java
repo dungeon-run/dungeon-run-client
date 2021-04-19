@@ -9,6 +9,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import edu.cnm.deepdive.dungeonrunclient.databinding.ActivityLoginBinding;
 import edu.cnm.deepdive.dungeonrunclient.service.GoogleSignInService;
 
+/**
+ * Activity for logging in to Google sign in services.
+ * Will allow the user to sign in to their google account for tracking attempts completed.
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private static final int LOGIN_REQUEST_CODE = 1000;

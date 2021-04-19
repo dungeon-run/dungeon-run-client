@@ -10,6 +10,9 @@ import edu.cnm.deepdive.dungeonrunclient.model.Attempt;
 import edu.cnm.deepdive.dungeonrunclient.model.User;
 import java.util.List;
 
+/**
+ *
+ */
 public class LeaderboardAdapter extends RecyclerView.Adapter<Holder> {
 
   private final Context context;

@@ -7,6 +7,9 @@ import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Maze.java is for the actual maze generation after the paths have been carved.
+ */
 public class Maze {
 
   private final Cell[][] cells;
@@ -14,6 +17,11 @@ public class Maze {
   private final Cell start;
   private final Cell finish;
 
+  /**
+   * For setting up the maze based on size and using the rng to determine the paths.
+   * @param size Parameter size is an int based on the difficulty set for the attempts.
+   * @param rng Rng carves the random paths through the maze.
+   */
   public Maze(int size, Random rng) {
     cells = new Cell[size][size];
     this.rng = rng;
@@ -29,10 +37,19 @@ public class Maze {
     Log.d(getClass().getName(), String.format("Finish = %d, %d", finish.getRow(), finish.getColumn()));
   }
 
+  /**
+   * Gets all of the cells when called upon in the other classes.
+   * @return
+   */
   public Cell[][] getCells() {
     return cells;
   }
 
+  /**
+   * Gets the size of the maze as set by the user to allow the maze generation to know how
+   * to generate the maze.
+   * @return
+   */
   public int getSize() {
     return cells.length;
   }
@@ -66,10 +83,21 @@ public class Maze {
     return farthestCell;
   }
 
+
+  /**
+   * Gets the start of the maze which is found by taking the longest paths and comparing it to the
+   * end of the longest path.
+   * @return
+   */
   public Cell getStart() {
     return start;
   }
 
+  /**
+   * Finds the end of the path the longest path from the start and determines it as the finish
+   * of the path.
+   * @return
+   */
   public Cell getFinish() {
     return finish;
   }

@@ -17,6 +17,11 @@ import edu.cnm.deepdive.dungeonrunclient.R;
 import edu.cnm.deepdive.dungeonrunclient.service.GoogleSignInService;
 import edu.cnm.deepdive.dungeonrunclient.viewmodel.MainViewModel;
 
+/**
+ * Main activity creates the set up for screens to display and interact for UI experience.
+ * Will set up the navigation to be able to switch to other activities and sets up the creation of
+ * displays.
+ */
 public class MainActivity extends AppCompatActivity {
 
   private MainViewModel viewModel;
