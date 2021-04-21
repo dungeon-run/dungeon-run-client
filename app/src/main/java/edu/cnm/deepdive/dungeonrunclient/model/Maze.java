@@ -107,26 +107,53 @@ public class Maze {
     return finish;
   }
 
+  /**
+   * Gets the current cell that the user is in.
+   * @return
+   */
   public Cell getCurrent() {
     return current;
   }
 
+  /**
+   * Sets the current cell that the user is in for display.
+   * @param current
+   */
   public void setCurrent(Cell current) {
     this.current = current;
   }
 
+  /**
+   * Uses the directions to get the arrivals and display the current cell the user is going through.
+   * @return
+   */
   public Map<Cell, Set<Direction>> getArrivals() {
     return arrivals;
   }
 
+  /**
+   * When the user departs a cell, a path is left behind to display moves taken.
+   * @return
+   */
   public Map<Cell, Set<Direction>> getDepartures() {
     return departures;
   }
 
+  /**
+   * When the current cell the user occupies is the end of the maze, the attempt is completed.
+   * @return
+   */
   public boolean isSolved() {
     return current.equals(finish);
   }
 
+  /**
+   * When the attempt is not completed, a user is able to move in any direction available to
+   * continue in the maze.
+   * @param direction Object of Direction allows the controller to know which direction to move the
+   *                  user in the cells.
+   * @return Returns true if the user has selected an available cell to move towards.
+   */
   public boolean move(Direction direction) {
     return !isSolved() && current
         .getConnectedNeighbor(direction)

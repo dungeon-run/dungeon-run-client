@@ -34,6 +34,10 @@ public class GameViewModel extends AndroidViewModel implements LifecycleObserver
 
   private Attempt attempt;
 
+  /**
+   * Fields needed to gather information from other classes within the application.
+   * @param application The application object from the Application class
+   */
   public GameViewModel(@NonNull Application application) {
     super(application);
     gameRepository = new GameRepository(application);
@@ -46,6 +50,10 @@ public class GameViewModel extends AndroidViewModel implements LifecycleObserver
 //    startMaze();
   }
 
+  /**
+   * Setting up the display of the game based on the difficulty level set by the user.
+   * This will also send the information to the server side to track the newly created attempt.
+   */
   public void startMaze() {
     int difficulty = preferences.getInt(
         resources.getString(R.string.difficulty_key),
@@ -56,14 +64,14 @@ public class GameViewModel extends AndroidViewModel implements LifecycleObserver
     attempt.setDifficulty(difficulty);
     pending.add(
         attemptRepository
-        .startAttempt(attempt)
-        .subscribe(
-            (receivedAttempt) -> {
-              attempt = receivedAttempt;
-              this.maze.postValue(maze);
-            },
-            this::logThrowable
-        )
+            .startAttempt(attempt)
+            .subscribe(
+                (receivedAttempt) -> {
+                  attempt = receivedAttempt;
+                  this.maze.postValue(maze);
+                },
+                this::logThrowable
+            )
     );
   }
 
@@ -72,22 +80,43 @@ public class GameViewModel extends AndroidViewModel implements LifecycleObserver
     this.throwable.postValue(throwable);
   }
 
+  /**
+   * Allows the user to be able to move the dot within the maze to different cells as long as
+   * they have not landed on the completed square to finish the maze.
+   * @param direction Direction is needed to tell the application which way to move the dot
+   *                  within the maze based on which arrow is clicked.
+   */
   public void move(Direction direction) {
     Maze maze = this.maze.getValue();
     if (!maze.isSolved()) {
       if (maze.move(direction)) {
         this.maze.setValue(maze);
         if (maze.isSolved()) {
-          //TODO send completed attempt to the server. Similar to lines 55-62
+          attempt.setTimeElapsed(attempt.getTimeElapsed());
+          pending.add(
+              attemptRepository
+                  .startAttempt(attempt)
+                  .subscribe(
+                      (updateAttempt) -> attempt = updateAttempt
+                  )
+          );
         }
       }
     }
   }
 
+  /**
+   * Gets the liveData of the current state of the maze.
+   * @return
+   */
   public LiveData<Maze> getMaze() {
     return maze;
   }
 
+  /**
+   * Throws the liveData if the current attempt is discarded and does not store to the database.
+   * @return
+   */
   public LiveData<Throwable> getThrowable() {
     return throwable;
   }

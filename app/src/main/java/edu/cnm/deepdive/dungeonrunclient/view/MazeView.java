@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import edu.cnm.deepdive.dungeonrunclient.R;
 import edu.cnm.deepdive.dungeonrunclient.model.Cell;
 import edu.cnm.deepdive.dungeonrunclient.model.Direction;
 import edu.cnm.deepdive.dungeonrunclient.model.Maze;
@@ -25,6 +27,8 @@ public class MazeView extends View {
 
   private Maze maze;
   private Paint paint;
+  private Context context;
+
   @ColorInt
   private int wallColor = Color.BLACK;
   @ColorInt
@@ -197,7 +201,7 @@ public class MazeView extends View {
         });
   }
 
-  protected void drawMarkers(Canvas canvas) {
+  private void drawMarkers(Canvas canvas) {
     int leftPadding = getPaddingLeft();
     int rightPadding = getPaddingRight();
     int topPadding = getPaddingTop();
@@ -244,42 +248,82 @@ public class MazeView extends View {
     this.maze = maze;
   }
 
+  /**
+   * Gets the wall color to set for the UI when maze is displayed.
+   * @return
+   */
   public int getWallColor() {
     return wallColor;
   }
 
+  /**
+   * Returns the wall color for use when called upon.
+   * @param wallColor
+   */
   public void setWallColor(int wallColor) {
     this.wallColor = wallColor;
   }
 
+  /**
+   * Gets the path color which is where the user has already been through the maze.
+   * @return
+   */
   public int getPathColor() {
     return pathColor;
   }
 
+  /**
+   * Sets the path color for use when user is going through the maze.
+   * @param pathColor
+   */
   public void setPathColor(int pathColor) {
     this.pathColor = pathColor;
   }
 
+  /**
+   * Get current color is to display where the user currently is.
+   * @return
+   */
   public int getCurrentColor() {
     return currentColor;
   }
 
+  /**
+   * Sets the color where the user currently is.
+   * @param currentColor
+   */
   public void setCurrentColor(int currentColor) {
     this.currentColor = currentColor;
   }
 
+  /**
+   * Get end color is to show where the end of the maze is.
+   * @return
+   */
   public int getEndColor() {
     return endColor;
   }
 
+  /**
+   * Sets the color at the location of the end of the maze.
+   * @param endColor
+   */
   public void setEndColor(int endColor) {
     this.endColor = endColor;
   }
 
+  /**
+   * Gets the strode width of the maze walls.
+   * @return
+   */
   public float getWallStrokeWidth() {
     return wallStrokeWidth;
   }
 
+  /**
+   * Sets the stroke with to display in the UI for the walls of the maze.
+   * @param wallStrokeWidth
+   */
   public void setWallStrokeWidth(float wallStrokeWidth) {
     this.wallStrokeWidth = wallStrokeWidth;
   }

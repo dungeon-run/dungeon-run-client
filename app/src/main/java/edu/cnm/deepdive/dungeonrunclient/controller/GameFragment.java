@@ -1,36 +1,35 @@
 package edu.cnm.deepdive.dungeonrunclient.controller;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import androidx.lifecycle.ViewModelProvider;
 import edu.cnm.deepdive.dungeonrunclient.R;
 import edu.cnm.deepdive.dungeonrunclient.databinding.FragmentGameBinding;
 import edu.cnm.deepdive.dungeonrunclient.model.Direction;
-import edu.cnm.deepdive.dungeonrunclient.model.Maze;
-import edu.cnm.deepdive.dungeonrunclient.service.GameRepository;
 import edu.cnm.deepdive.dungeonrunclient.viewmodel.GameViewModel;
-import org.jetbrains.annotations.NotNull;
 
+/**
+ * Encapsulates the actual gameplay and displays for the UI.
+ */
 public class GameFragment extends Fragment {
 
   private FragmentGameBinding binding;
   private GameViewModel viewModel;
 
-  public static GameFragment newInstance(String param1, String param2) {
-    GameFragment fragment = new GameFragment();
-    Bundle args = new Bundle();
-    fragment.setArguments(args);
-    return fragment;
-  }
+//  public static GameFragment newInstance(String param1, String param2) {
+//    GameFragment fragment = new GameFragment();
+//    Bundle args = new Bundle();
+//    fragment.setArguments(args);
+//    return fragment;
+//  }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {

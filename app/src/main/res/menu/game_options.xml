@@ -4,17 +4,17 @@
 
   <item
     android:id="@+id/new_game"
-    android:title="New Game"
+    android:title="@string/new_game"
     android:icon="@drawable/ic_new_game"
     app:showAsAction="always"/>
   <item
     android:id="@+id/pause_game"
-    android:title="Pause Game"
+    android:title="@string/pause_game"
     android:icon="@drawable/ic_pause"
     app:showAsAction="always"/>
   <item
     android:id="@+id/resume_game"
-    android:title="Resume Game"
+    android:title="@string/resume_game"
     android:icon="@drawable/ic_play"
     android:visible="false"
     app:showAsAction="always"/>
