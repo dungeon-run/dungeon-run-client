@@ -4,12 +4,13 @@
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <SeekBarPreference
-    android:key="maze_difficulty_key"
+    android:key="@string/difficulty_key"
     android:title="@string/maze_difficulty_title"
     android:summary="@string/difficulty_summary"
     android:icon="@drawable/ic_labyrinth_colorful"
-    app:min="1"
-    android:max="20"
+    android:defaultValue="@integer/default_difficulty"
+    app:min="@integer/min_difficulty"
+    android:max="@integer/max_difficulty"
     app:showSeekBarValue="true"/>
 
 </PreferenceScreen>

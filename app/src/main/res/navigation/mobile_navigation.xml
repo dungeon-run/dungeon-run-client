@@ -4,8 +4,9 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/mobile_navigation.xml"
-  app:startDestination="@id/navigation_home">
+  app:startDestination="@id/navigation_game">
 
+<!--
   <fragment
     android:id="@+id/navigation_home"
     android:label="Dungeon Run: Home"
@@ -16,6 +17,7 @@
     app:destination="@id/navigation_game"
     app:popUpTo="@id/navigation_home"/>
   </fragment>
+-->
 
   <fragment
     android:id="@+id/navigation_settings"
@@ -34,9 +36,11 @@
     android:label="DungeonRun: Maze"
     android:name="edu.cnm.deepdive.dungeonrunclient.controller.GameFragment"
     tools:layout="@layout/fragment_game">
+<!--
     <argument
       android:name="maze_id"
       app:argType="long"/>
+-->
   </fragment>
 
 </navigation>

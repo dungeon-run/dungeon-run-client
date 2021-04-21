@@ -1,8 +1,9 @@
 package edu.cnm.deepdive.dungeonrunclient.model;
 
-import android.util.Log;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,6 +17,9 @@ public class Maze {
   private final Random rng;
   private final Cell start;
   private final Cell finish;
+  private final Map<Cell, Set<Direction>> arrivals;
+  private final Map<Cell, Set<Direction>> departures;
+  private Cell current;
 
   /**
    * For setting up the maze based on size and using the rng to determine the paths.
@@ -33,8 +37,9 @@ public class Maze {
     cells[0][0].addToMaze();
     start = getFarthestCell(cells[0][0]);
     finish = getFarthestCell(start);
-    Log.d(getClass().getName(), String.format("Start = %d, %d", start.getRow(), start.getColumn()));
-    Log.d(getClass().getName(), String.format("Finish = %d, %d", finish.getRow(), finish.getColumn()));
+    current = start;
+    arrivals = new HashMap<>();
+    departures = new HashMap<>();
   }
 
   /**
@@ -100,5 +105,41 @@ public class Maze {
    */
   public Cell getFinish() {
     return finish;
+  }
+
+  public Cell getCurrent() {
+    return current;
+  }
+
+  public void setCurrent(Cell current) {
+    this.current = current;
+  }
+
+  public Map<Cell, Set<Direction>> getArrivals() {
+    return arrivals;
+  }
+
+  public Map<Cell, Set<Direction>> getDepartures() {
+    return departures;
+  }
+
+  public boolean isSolved() {
+    return current.equals(finish);
+  }
+
+  public boolean move(Direction direction) {
+    return !isSolved() && current
+        .getConnectedNeighbor(direction)
+        .map((neighbor) -> {
+          Set<Direction> departures = this.departures.getOrDefault(current, new HashSet<>());
+          departures.add(direction);
+          this.departures.putIfAbsent(current, departures);
+          Set<Direction> arrivals = this.arrivals.getOrDefault(neighbor, new HashSet<>());
+          arrivals.add(direction.opposite());
+          this.arrivals.putIfAbsent(neighbor, arrivals);
+          current = neighbor;
+          return true;
+        })
+        .orElse(false);
   }
 }

@@ -5,16 +5,78 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  tools:context=".controller.GameFragment"
-  android:padding="8dp">
+  tools:context=".controller.GameFragment">
 
   <edu.cnm.deepdive.dungeonrunclient.view.MazeView
     android:id="@+id/maze"
     android:layout_width="0dp"
     android:layout_height="0dp"
+    android:padding="8dp"
+    wallColor="#FF0000"
+    pathColor="#80FFFFFF"
+    currentColor="#FF0000FF"
+    endColor="#FF008000"
+    wallStrokeWidth="3"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintDimensionRatio="H,1:1"/>
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/move_left"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_arrow_left"
+    android:layout_margin="16dp"
+    android:background="?android:selectableItemBackgroundBorderless"
+    app:useCompatPadding="true"
+    android:contentDescription="Move left"
+    android:tooltipText="Move left"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toLeftOf="@id/move_right"
+    app:layout_constraintTop_toBottomOf="@id/maze"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintHorizontal_chainStyle="packed"/>
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/move_right"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_arrow_right"
+    android:layout_margin="16dp"
+    android:background="?android:selectableItemBackgroundBorderless"
+    app:useCompatPadding="true"
+    app:layout_constraintLeft_toRightOf="@id/move_left"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/maze"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/move_up"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_arrow_up"
+    android:layout_margin="16dp"
+    android:background="?android:selectableItemBackgroundBorderless"
+    app:useCompatPadding="true"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/maze"
+    app:layout_constraintBottom_toTopOf="@id/move_down"
+    app:layout_constraintVertical_chainStyle="packed"/>
+
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/move_down"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_arrow_down"
+    android:layout_margin="16dp"
+    android:background="?android:selectableItemBackgroundBorderless"
+    app:useCompatPadding="true"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/move_up"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
