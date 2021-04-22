@@ -1,0 +1,7 @@
+edu.cnm.deepdive.dungeonrunclient
+edu.cnm.deepdive.dungeonrunclient.adapter
+edu.cnm.deepdive.dungeonrunclient.controller
+edu.cnm.deepdive.dungeonrunclient.model
+edu.cnm.deepdive.dungeonrunclient.service
+edu.cnm.deepdive.dungeonrunclient.view
+edu.cnm.deepdive.dungeonrunclient.viewmodel
