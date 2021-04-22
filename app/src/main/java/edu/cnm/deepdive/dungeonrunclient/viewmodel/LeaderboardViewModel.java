@@ -49,14 +49,15 @@ public class LeaderboardViewModel extends AndroidViewModel implements LifecycleO
     return throwable;
   }
 
-  // TODO add pending here.
   public void getAttemptsByDifficulty(int difficulty) {
     throwable.postValue(null);
-    attemptRepository.getLeaderboard(difficulty)
-        .subscribe(
-            attempts::postValue,
-            throwable::postValue
-        );
+    pending.add(
+        attemptRepository.getLeaderboard(difficulty)
+            .subscribe(
+                attempts::postValue,
+                throwable::postValue
+            )
+    );
   }
 
   public void setAttempts(int id) {

@@ -49,7 +49,6 @@ public interface DungeonRunProxy {
    * Saves the information for the database when the attempt is compleated.
    * @param bearerToken Needs to have the bearerToken to keep a current connection with the server.
    * @param id Parameter Id is used to ensure the information associated with the user is shown.
-   * @param complete Sets boolean true when the attempt is successfully completed.
    * @return Returns the information for use in the database upon completion.
    */
   @PUT("attempts/{id}")

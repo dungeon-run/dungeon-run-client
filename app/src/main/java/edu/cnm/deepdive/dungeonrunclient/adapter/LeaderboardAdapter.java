@@ -5,27 +5,21 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import edu.cnm.deepdive.dungeonrunclient.adapter.LeaderboardAdapter.Holder;
 import edu.cnm.deepdive.dungeonrunclient.databinding.ItemValueCountBinding;
 import edu.cnm.deepdive.dungeonrunclient.model.Attempt;
-import edu.cnm.deepdive.dungeonrunclient.model.User;
 import java.util.List;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<Holder> {
 
   private final Context context;
   private final List<Attempt> attempts;
-  private final List<User> users;
   private final LayoutInflater inflater;
 
-  public LeaderboardAdapter(Context context, List<Attempt> attempts, List<User> users) {
+  public LeaderboardAdapter(Context context, List<Attempt> attempts) {
     this.context = context;
     this.attempts = attempts;
-    this.users = users;
     inflater = LayoutInflater.from(context);
-  }
-
-  public List<Attempt> getAttempts() {
-    return attempts;
   }
 
   @NonNull
@@ -37,34 +31,33 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<Holder> {
 
   @Override
   public void onBindViewHolder(@NonNull Holder holder, int position) {
-    holder.Bind(attempts.get(position), users.get(position));
+    holder.bind(position);
   }
 
   @Override
   public int getItemCount() {
     return attempts.size();
   }
+
+
+  public class Holder extends RecyclerView.ViewHolder {
+
+    private final ItemValueCountBinding binding;
+    private Attempt attempt;
+
+    public Holder(ItemValueCountBinding binding) {
+      super(binding.getRoot());
+      this.binding = binding;
+      binding.getRoot();
+    }
+
+    public void bind(int position) {
+      attempt = attempts.get(position);
+      int difficulty = attempt.getDifficulty();
+      long timeElapsed = attempt.getTimeElapsed();
+      binding.userName.setText(attempt.getUser().getDisplayName());
+      binding.difficulty.setText(difficulty);
+      binding.timeElapsed.setText((int) timeElapsed);
+    }
+  }
 }
-
- class Holder extends RecyclerView.ViewHolder {
-
-  private final ItemValueCountBinding valueBinding;
-  private Attempt attempt;
-  private User user;
-
-   public Holder(@NonNull ItemValueCountBinding binding) {
-     super(binding.getRoot());
-     this.valueBinding = binding;
-     binding.getRoot();
-   }
-
-   void Bind(Attempt attempt, User user) {
-     String userLeaderboard = user.getDisplayName();
-     int difficulty = attempt.getDifficulty();
-     long timeElapsed = attempt.getTimeElapsed();
-     valueBinding.userName.setText(userLeaderboard);
-     valueBinding.difficulty.setText(difficulty);
-     valueBinding.timeElapsed.setText((int) timeElapsed);
-     valueBinding.getRoot();
-   }
- }
