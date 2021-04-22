@@ -47,7 +47,6 @@ public class GameViewModel extends AndroidViewModel implements LifecycleObserver
     pending = new CompositeDisposable();
     resources = application.getResources();
     preferences = PreferenceManager.getDefaultSharedPreferences(application);
-//    startMaze();
   }
 
   /**

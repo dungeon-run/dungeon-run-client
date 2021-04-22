@@ -162,10 +162,5 @@ public class Attempt {
   public void setTimeElapsed(long timeElapsed) {
     this.timeElapsed = timeElapsed;
   }
-//
-//  @NonNull
-//  @Override
-//  public String toString() {
-//    return String.valueOf(difficulty);
-//  }
+
 }

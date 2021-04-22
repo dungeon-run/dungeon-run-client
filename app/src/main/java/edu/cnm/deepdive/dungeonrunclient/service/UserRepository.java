@@ -35,7 +35,7 @@ public class UserRepository {
 
   /**
    * Gets a single instance for use with the UserProfile associated with the userProfile.
-   * @return
+   * @return Returns the user profile so the application can access it for when needed.
    */
   public Single<User> getUserProfile() {
     return signInService.refreshBearerToken()

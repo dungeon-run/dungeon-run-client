@@ -24,13 +24,6 @@ public class GameFragment extends Fragment {
   private FragmentGameBinding binding;
   private GameViewModel viewModel;
 
-//  public static GameFragment newInstance(String param1, String param2) {
-//    GameFragment fragment = new GameFragment();
-//    Bundle args = new Bundle();
-//    fragment.setArguments(args);
-//    return fragment;
-//  }
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

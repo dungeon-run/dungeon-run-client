@@ -28,7 +28,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.jetbrains.annotations.NotNull;
 
-
+/**
+ * Leaderboard encapsulates the information needed to display the leaderboard and stats.
+ */
 public class LeaderboardFragment extends Fragment implements OnItemSelectedListener {
 
   private FragmentLeaderboardBinding binding;
@@ -55,13 +57,6 @@ public class LeaderboardFragment extends Fragment implements OnItemSelectedListe
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     viewModel = new ViewModelProvider(getActivity()).get(LeaderboardViewModel.class);
-//    viewModel.getSelectedItem().observe(getViewLifecycleOwner(), new Observer<Integer>() {
-//      @Override
-//      public void onChanged(Integer integer) {
-//        difficulty = integer;
-//      }
-//    });
-//    viewModel.getAttemptsByDifficulty(difficulty);
     Resources res = getResources();
     List<Integer> difficulties = IntStream
         .rangeClosed(res.getInteger(R.integer.min_difficulty), res.getInteger(R.integer.max_difficulty))

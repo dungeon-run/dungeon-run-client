@@ -136,8 +136,6 @@ public class Cell {
         .collect(Collectors.toList());
   }
 
-  //sets the random paths in the maze
-
   /**
    * The method to allow the maze to have the randomly generated paths in the maze.
    */

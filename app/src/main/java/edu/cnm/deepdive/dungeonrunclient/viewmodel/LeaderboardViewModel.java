@@ -29,6 +29,7 @@ public class LeaderboardViewModel extends AndroidViewModel implements LifecycleO
 
   /**
    * Sets the fields of the leaderboard to be used for the viewmodels to be displayed when called.
+   *
    * @param application creates an Instance of application.
    */
   public LeaderboardViewModel(@NonNull Application application) {
@@ -43,22 +44,29 @@ public class LeaderboardViewModel extends AndroidViewModel implements LifecycleO
     selectedItem = new MutableLiveData<>();
   }
 
+  /**
+   * Gets the live data from the list of Attempts in the server side to use.
+   *
+   * @return
+   */
   public LiveData<List<Attempt>> getAttempts() {
     return attempts;
   }
 
-  public LiveData<Integer> getSelectedItem() {
-    return selectedItem;
-  }
-
+  /**
+   * Gets throwables to use when the current instance of data is not needed.
+   *
+   * @return
+   */
   public LiveData<Throwable> getThrowable() {
     return throwable;
   }
 
-  public void select(int index) {
-    selectedItem.setValue(index);
-  }
-
+  /**
+   * Gets any attempts and sorts them by difficulty of level associated with.
+   *
+   * @param difficulty An instance of Difficulty in an int.
+   */
   public void getAttemptsByDifficulty(int difficulty) {
     throwable.postValue(null);
     pending.add(
@@ -68,10 +76,6 @@ public class LeaderboardViewModel extends AndroidViewModel implements LifecycleO
                 throwable::postValue
             )
     );
-  }
-
-  public void setAttempts(int id) {
-    difficulty.setValue(id);
   }
 }
 
