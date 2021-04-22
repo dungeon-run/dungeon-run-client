@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <integer name="min_difficulty">1</integer>
-  <integer name="max_difficulty">20</integer>
+  <integer name="max_difficulty">10</integer>
   <integer name="default_difficulty">4</integer>
 </resources>

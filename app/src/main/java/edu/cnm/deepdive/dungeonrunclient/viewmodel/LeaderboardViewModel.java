@@ -25,6 +25,7 @@ public class LeaderboardViewModel extends AndroidViewModel implements LifecycleO
   private final MutableLiveData<Integer> difficulty;
   private final CompositeDisposable pending;
   private final MutableLiveData<List<Attempt>> attempts;
+  private final MutableLiveData<Integer> selectedItem;
 
   /**
    * Sets the fields of the leaderboard to be used for the viewmodels to be displayed when called.
@@ -39,14 +40,23 @@ public class LeaderboardViewModel extends AndroidViewModel implements LifecycleO
     pending = new CompositeDisposable();
     attempts = new MutableLiveData<>();
     difficulty = new MutableLiveData<>();
+    selectedItem = new MutableLiveData<>();
   }
 
   public LiveData<List<Attempt>> getAttempts() {
     return attempts;
   }
 
+  public LiveData<Integer> getSelectedItem() {
+    return selectedItem;
+  }
+
   public LiveData<Throwable> getThrowable() {
     return throwable;
+  }
+
+  public void select(int index) {
+    selectedItem.setValue(index);
   }
 
   public void getAttemptsByDifficulty(int difficulty) {

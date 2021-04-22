@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.dungeonrunclient.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -30,13 +31,13 @@ public class MazeView extends View {
   private Context context;
 
   @ColorInt
-  private int wallColor = Color.BLACK;
+  private int wallColor;
   @ColorInt
-  private int pathColor = Color.argb(255, 208, 208, 208);
+  private int pathColor;
   @ColorInt
-  private int currentColor = Color.BLUE;
+  private int currentColor;
   @ColorInt
-  private int endColor = Color.argb(255, 0, 128, 0);
+  private int endColor;
   private float wallStrokeWidth = 5;
 
   {
@@ -61,6 +62,7 @@ public class MazeView extends View {
    */
   public MazeView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
+    setUpColors(context, attrs);
   }
 
   /**
@@ -72,6 +74,7 @@ public class MazeView extends View {
    */
   public MazeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
+    setUpColors(context, attrs);
   }
 
   /**
@@ -85,6 +88,19 @@ public class MazeView extends View {
   public MazeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr,
       int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
+    setUpColors(context, attrs);
+  }
+
+  private void setUpColors(Context context, AttributeSet attrs) {
+    TypedArray arr = context.getTheme().obtainStyledAttributes(attrs, R.styleable.MazeView, 0, 0);
+    try {
+      wallColor = arr.getColor(R.styleable.MazeView_wallColor, Color.BLACK);
+      pathColor = arr.getColor(R.styleable.MazeView_pathColor, Color.argb(255, 208, 208, 208));
+      endColor = arr.getColor(R.styleable.MazeView_endColor, Color.argb(255, 0, 128, 0));
+      currentColor = arr.getColor(R.styleable.MazeView_currentColor, Color.BLUE);
+    } finally {
+      arr.recycle();
+    }
   }
 
   @Override
@@ -250,6 +266,7 @@ public class MazeView extends View {
 
   /**
    * Gets the wall color to set for the UI when maze is displayed.
+   *
    * @return
    */
   public int getWallColor() {
@@ -258,14 +275,17 @@ public class MazeView extends View {
 
   /**
    * Returns the wall color for use when called upon.
+   *
    * @param wallColor
    */
   public void setWallColor(int wallColor) {
     this.wallColor = wallColor;
+    invalidate();
   }
 
   /**
    * Gets the path color which is where the user has already been through the maze.
+   *
    * @return
    */
   public int getPathColor() {
@@ -274,14 +294,17 @@ public class MazeView extends View {
 
   /**
    * Sets the path color for use when user is going through the maze.
+   *
    * @param pathColor
    */
   public void setPathColor(int pathColor) {
     this.pathColor = pathColor;
+    invalidate();
   }
 
   /**
    * Get current color is to display where the user currently is.
+   *
    * @return
    */
   public int getCurrentColor() {
@@ -290,14 +313,17 @@ public class MazeView extends View {
 
   /**
    * Sets the color where the user currently is.
+   *
    * @param currentColor
    */
   public void setCurrentColor(int currentColor) {
     this.currentColor = currentColor;
+    invalidate();
   }
 
   /**
    * Get end color is to show where the end of the maze is.
+   *
    * @return
    */
   public int getEndColor() {
@@ -306,14 +332,17 @@ public class MazeView extends View {
 
   /**
    * Sets the color at the location of the end of the maze.
+   *
    * @param endColor
    */
   public void setEndColor(int endColor) {
     this.endColor = endColor;
+    invalidate();
   }
 
   /**
    * Gets the strode width of the maze walls.
+   *
    * @return
    */
   public float getWallStrokeWidth() {
@@ -322,6 +351,7 @@ public class MazeView extends View {
 
   /**
    * Sets the stroke with to display in the UI for the walls of the maze.
+   *
    * @param wallStrokeWidth
    */
   public void setWallStrokeWidth(float wallStrokeWidth) {

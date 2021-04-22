@@ -1,8 +1,10 @@
 package edu.cnm.deepdive.dungeonrunclient.model;
 
+import androidx.annotation.NonNull;
 import com.google.gson.annotations.Expose;
 import java.util.Date;
 import java.util.UUID;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Gathers the information for level Attempts from the server side to use in the client side.
@@ -160,4 +162,10 @@ public class Attempt {
   public void setTimeElapsed(long timeElapsed) {
     this.timeElapsed = timeElapsed;
   }
+//
+//  @NonNull
+//  @Override
+//  public String toString() {
+//    return String.valueOf(difficulty);
+//  }
 }
