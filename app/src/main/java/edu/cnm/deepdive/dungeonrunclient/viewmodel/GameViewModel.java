@@ -92,12 +92,16 @@ public class GameViewModel extends AndroidViewModel implements LifecycleObserver
       if (maze.move(direction)) {
         this.maze.setValue(maze);
         if (maze.isSolved()) {
-          attempt.setTimeElapsed(attempt.getTimeElapsed());
+          attempt.setCompleted(true);
+          attempt.setTimeElapsed(new Date().getTime() - attempt.getStartTime().getTime());
           pending.add(
               attemptRepository
-                  .startAttempt(attempt)
+                  .updateAttempt(attempt)
                   .subscribe(
-                      (updateAttempt) -> attempt = updateAttempt
+                      (receivedAttempt) -> {
+                        //TODO update live data so that the UI can display to the user
+                      },
+                      this::logThrowable
                   )
           );
         }

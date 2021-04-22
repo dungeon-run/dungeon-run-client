@@ -42,10 +42,10 @@ public class AttemptRepository {
    * @param attempt Creates an instance of the class Attempt.
    * @return Returns the signInService and keeps the bearerToken refreshed for access to the server.
    */
-  public Single<Boolean> updateAttempt(Attempt attempt) {
+  public Single<Attempt> updateAttempt(Attempt attempt) {
     return signInService.refreshBearerToken()
         .observeOn(Schedulers.io())
-        .flatMap((token) -> webService.markComplete(token, attempt.getId(), attempt.isCompleted()));
+        .flatMap((token) -> webService.updateAttempt(token, attempt.getId(), attempt));
   }
 
   /**

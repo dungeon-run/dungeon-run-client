@@ -52,9 +52,9 @@ public interface DungeonRunProxy {
    * @param complete Sets boolean true when the attempt is successfully completed.
    * @return Returns the information for use in the database upon completion.
    */
-  @PUT("attempts/{id}/completed")
-  Single<Boolean> markComplete(@Header("Authorization") String bearerToken,
-      @Path("id") UUID id, @Body boolean complete);
+  @PUT("attempts/{id}")
+  Single<Attempt> updateAttempt(@Header("Authorization") String bearerToken,
+      @Path("id") UUID id, @Body Attempt attempt);
 
   /**
    * Gets the list of attempts from the database when called upon.
@@ -84,6 +84,7 @@ public interface DungeonRunProxy {
 
     static {
       Gson gson = new GsonBuilder()
+          .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
           .excludeFieldsWithoutExposeAnnotation()
           .create();
       HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
