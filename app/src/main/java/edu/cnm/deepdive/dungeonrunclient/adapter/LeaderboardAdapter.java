@@ -53,11 +53,9 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<Holder> {
 
     public void bind(int position) {
       attempt = attempts.get(position);
-      int difficulty = attempt.getDifficulty();
-      long timeElapsed = attempt.getTimeElapsed();
       binding.userName.setText(attempt.getUser().getDisplayName());
-      binding.difficulty.setText(difficulty);
-      binding.timeElapsed.setText((int) timeElapsed);
+      binding.difficulty.setText(String.valueOf(attempt.getDifficulty()));
+      binding.timeElapsed.setText(String.valueOf(attempt.getTimeElapsed()));
     }
   }
 }

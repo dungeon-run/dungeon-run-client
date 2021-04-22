@@ -40,6 +40,7 @@ public class LeaderboardFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     binding = FragmentLeaderboardBinding.inflate(inflater, container, false);
+    viewModel = new ViewModelProvider(getActivity()).get(LeaderboardViewModel.class);
 //    int difficulty = ((Attempt) binding.difficultySpinner.getSelectedItem()).getDifficulty();
 //    binding.difficultySpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 //      @Override
@@ -58,8 +59,7 @@ public class LeaderboardFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    viewModel = new ViewModelProvider(getActivity()).get(LeaderboardViewModel.class);
-    viewModel.getAttemptsByDifficulty(1);
+    viewModel.getAttemptsByDifficulty(2);
     viewModel.getAttempts().observe(getViewLifecycleOwner(), (attempts) -> {
       if (attempts != null){
        binding.countsList.setAdapter(new LeaderboardAdapter(getContext(), attempts));
