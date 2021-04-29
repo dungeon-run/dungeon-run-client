@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import edu.cnm.deepdive.dungeonrunclient.R;
 import edu.cnm.deepdive.dungeonrunclient.adapter.LeaderboardAdapter.Holder;
 import edu.cnm.deepdive.dungeonrunclient.databinding.ItemValueCountBinding;
 import edu.cnm.deepdive.dungeonrunclient.model.Attempt;
@@ -19,6 +20,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<Holder> {
   private final Context context;
   private final List<Attempt> attempts;
   private final LayoutInflater inflater;
+  private final String elapsedTimeFormat;
 
   /**
    * Sets up the fields to be used in the class.
@@ -29,6 +31,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<Holder> {
     this.context = context;
     this.attempts = attempts;
     inflater = LayoutInflater.from(context);
+    elapsedTimeFormat = context.getString(R.string.elapsed_time_format);
   }
 
   @NonNull
@@ -74,7 +77,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<Holder> {
       attempt = attempts.get(position);
       binding.userName.setText(attempt.getUser().getDisplayName());
       binding.difficulty.setText(String.valueOf(attempt.getDifficulty()));
-      binding.timeElapsed.setText(String.valueOf(attempt.getTimeElapsed()));
+      binding.timeElapsed.setText(String.format(elapsedTimeFormat, attempt.getTimeElapsed() /1000.0));
     }
   }
 }
